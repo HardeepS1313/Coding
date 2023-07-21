@@ -1,0 +1,51 @@
+Instructions
+Step 1.
+Copy your navigation bar box element in desktop, switch to the mobile editor, and paste the box on your page.
+This will be your mobile dropdown menu! Style to your liking.
+Step 2.
+Still in mobile, you will now want hide the buttons in the original navigation bar and add your toggle
+button/image.
+Step 3
+Switch to the desktop editor and hide the newly created dropdown menu box element.
+Step 4.
+Copy and paste the following snippet to the Javascript section with placement 'Before Body End Tag'.
+«script sree://ejex. googleapts.com/ajax/1b5/Sauery/1.4.2/Jawery.ein.ja=-type=-text
+This is the reference to the Query library. Next, paste the menu_toggle.js sl8 Javascript code below the
+snippet.
+Step 5.
+Replace "#lp-pom-image-120" with the ID of your toggle button/image from Step 2 and both instances of "#lp-
+pom-box-113" with the ID of your menu box created in Step 1.
+Step 6.
+Paste the menu_box.css 90s CSS code in the Stylesheets section.
+Step 7>
+Replace "#lp-pom-image-113" with the ID of your menu box from Step:1 and adjust height
+of your original navigation bar.
+
+
+
+<style>
+    / Replace "#lp-pom-box-113" with the ID of your menu box and the 'top' value with the pixel height of your navigation bar /
+    #lp-pom-box-542{
+      display: none;
+      position: absolute;
+      top: 150px;
+      left: 50%;
+      margin-left: -160px;
+      z-index:9999;
+    }
+    </style>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+<script>
+//Replace "#lp-pom-image-120" with the ID of your toggle button
+//Replace both instances of "#lp-pom-box-113" with the ID of your menu box
+  
+$("#lp-pom-button-550, #lp-pom-box-542 .lp-pom-button").click(function() {  
+    
+  $("#lp-pom-box-542").slideToggle("slow");
+    
+});
+  
+</script>
