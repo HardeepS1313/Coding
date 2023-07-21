@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Calculator Practice</title>
+    <style>
+      *{
+    margin: 0;
+    padding: 0;
+}
+
+.calculator {
+    width: 280px;
+    padding: 10px;
+    background-color: #011e1885;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    text-align: center;
+    /* box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); */
+    margin: 50px auto;
+  }
+
+  .calculator input {
+    width: 80%;
+    margin: 10px 0 20px 0;
+    padding: 10px;
+    font-size: 24px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  .calculator button {
+    width: 50px;
+    height: 50px;
+    margin: 5px;
+    font-size: 24px;
+    border: none;
+    border-radius: 4px;
+    background-color: #e0e0e0;
+    color: #333;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  .calculator button:hover {
+    background-color: #ccc;
+  }
+
+  .calculator button.operator {
+    background-color: #ff9800;
+    color: #fff;
+  }
+
+  .calculator button.operator:hover {
+    background-color: #f57c00;
+  }
+
+  .calculator button#equals {
+    background-color: #0aaa0f;
+    color: #070707;
+  }
+
+  .calculator button#equals:hover {
+    background-color: #45a049;
+  }
+
+  #clear{
+    width: 180px;
+    background-color: #006300;
+    color: white;
+  }
+
+  #backspace{
+    background-color: #fe0000;
+    color: rgb(27, 27, 27);
+  }
+    </style>
+</head>
+<body>
+  <div class="calculator">
+    <input type="text" id="display">
+    <button id="clear">Clear</button>
+    <button id="backspace">X</button> 
+    <button>7</button>
+    <button>8</button>
+    <button>9</button>
+    <button class="operator">/</button>
+    <button>4</button>
+    <button>5</button>
+    <button>6</button>
+    <button class="operator">*</button>
+    <button>1</button>
+    <button>2</button>
+    <button>3</button>
+    <button class="operator">-</button>
+    <button>0</button>
+    <button>.</button>
+    <button class="operator" id="equals">=</button>
+    <button class="operator">+</button>
+  </div>
+
+
+  <script>
+    var display = document.getElementById('display');
+var buttons = document.querySelectorAll('.calculator button');
+
+buttons.forEach(function (button) {
+  button.addEventListener('click', function () {
+    if (button.id === 'clear') {
+      display.value = '';
+    } else if (button.id === 'equals') {
+      calculateResult();
+    }
+    else if (button.id === 'backspace') {
+      deleteLastDigit();
+    }
+    else {
+      display.value = display.value.concat(button.textContent);
+    }
+  });
+});
+
+function calculateResult() {
+  var expression = display.value;
+  var operators = /[+\-*/]/;
+  var numbers = expression.split(operators);
+  var operands = expression.match(operators);
+
+  var result = parseFloat(numbers[0]);
+
+  operands.forEach(function (operator, index) {
+    var number = parseFloat(numbers[index + 1]);
+    switch (operator) {
+      case '+':
+        result = result + number;
+        break;
+      case '-':
+        result = result - number;
+        break;
+      case '*':
+        result = result * number;
+        break;
+      case '/':
+        result = result / number;
+        break;
+    }
+  });
+
+  display.value = result;
+}
+
+function deleteLastDigit() {
+  display.value = display.value.slice(0, -1);
+}
+  </script>
+</body>
+</html>
