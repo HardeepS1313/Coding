@@ -1,0 +1,187 @@
+<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+
+.container {
+max-width: 960px;
+    margin: 0px auto 40px;
+    width: 100%;
+}
+
+ul.tabs {
+      border: 1px solid;
+    border-color: rgb(207 207 207 / 27%);
+  border-radius: 25px 25px 0 0;
+  list-style: none;
+    display: flex;
+    justify-content: space-around;
+    padding: 25px 5%;
+    margin: 20px auto 0px;
+    gap: 5%;
+    / flex: 1 1 auto; /
+    max-width: 100%;
+    background-color: rgb(16, 16, 16);
+    border-color: rgba(207, 207, 207, 0.1);
+}
+
+ul li {
+  color: rgb(255, 255, 255);
+    font-size: 16px;
+    font-family: 'ProximaNova';
+  cursor: pointer;
+    padding: 15px !important;
+    background: linear-gradient(0deg, rgba(125,51,249,1) 0%, rgba(193,108,229,1) 100%)!important;
+    border: none;
+    transition: transform .3s ease, box-shadow .7s ease;
+    flex: 1 1 auto;
+    border-radius: 60px;
+    text-align: center;
+}
+.tab-img{
+  max-width:45%;
+}
+ul li:hover{
+  
+  box-shadow: 0px 10px 79px 0px rgb(13 203 228 / 33%);
+    transform: scale(1.05) translate(0px, -5px)!important;
+}
+
+
+
+
+.content {
+      background-color: rgb(16, 16, 16);
+    border-color: rgba(207, 207, 207, 0.1);
+    width: 100%;
+    max-width: 100%;
+    display: block;
+  border-radius: 0 0 25px 25px;
+}
+
+.content div {
+  padding: 20px;
+  display: none;
+}
+
+.content div.active {
+    display: flex !important;
+    gap: 30px;
+      border: 1px solid;
+    border-color: rgb(207 207 207 / 27%);
+  border-radius:0 0 25px 25px;
+  padding: 30px!important;
+    box-shadow: 0px 20px 61px -27px rgb(218 97 255 / 36%);
+}
+
+.tab-text{
+      text-align: left;
+    font-size: 18px;
+    color: rgb(255, 255, 255);
+  line-height: 1.5em;
+  font-family: 'ProximaNova';
+}
+
+.tab-text span{
+  display:block;
+  font-size: clamp(26px , 3vw, 32px);
+  font-weight: 700;
+  line-height:1.1em;
+      font-family: GTWalsheim !important;
+      margin-bottom: 25px;
+}
+
+@media(max-width:768px){
+  .content div.active {
+    gap: 30px;
+    flex-wrap: wrap;
+}
+  .tab-img {
+    max-width: 60%;
+}
+}
+
+
+@media(max-width:600px){
+  ul.tabs {
+        justify-content: center;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .tab-img {
+    max-width: 100%;
+}
+  
+  .content div.active {
+    padding: 20px!important;
+}
+  
+}
+
+    </style>
+
+
+    <div class="container">
+        <ul class="tabs">
+          <li data-num=".one" class="active">PERSONALIZED</li>
+          <li data-num=".two">24/7 ACCESS</li>
+          <li data-num=".three">MONETIZE</li>
+        </ul>
+        <div class="content">
+          <div class="one active">
+             <img class="tab-img" src="https://images.clickfunnels.com/01/9d664bba1b456c9ef499d2adcedaaf/Personalized.png" alt="" data-lazy-loading="false" tabindex="0">
+            <p class="tab-text"><span>Hyper-Personalized Interactions</span>
+              Our AI bot is meticulously trained to mirror your voice, personality, and style, providing fans with an unparalleled level of authenticity. It engages in dynamic conversations, responding just as you would, creating a truly personalized experience for each user.</p>
+          </div>
+          <div class="two">
+             <img class="tab-img" src="https://images.clickfunnels.com/35/47eace2df24bfd926a91f1d5dbdde6/24-7.png" alt="" data-lazy-loading="false" tabindex="0">
+            <p class="tab-text"><span>24/7 Availability</span>
+              Say goodbye to limitations imposed by time zones or hectic schedules. The AI bot is available round-the-clock, ensuring continuous interaction with fans worldwide. Whether it's answering questions, offering advice, or sharing insights, your AI bot will always be there to engage and entertain, building lasting connections.</p>
+          </div>
+          <div class="three">
+            <img class="tab-img" src="https://images.clickfunnels.com/b8/37b13a7470423eb46bbcc022abd83a/revenue.png" alt="" data-lazy-loading="false" tabindex="0">
+            <p class="tab-text"><span>Revenue Generation</span>
+              Harness the power of your influence and turn it into a lucrative business opportunity. With our AI bot, you can monetize fan interactions effortlessly. Each time a fan engages with your AI bot, you earn a portion of the payment, providing you with a sustainable revenue stream while expanding your fan base.</p>
+          </div>
+        </div>
+      </div>
+
+
+      
+
+<script>
+let list = document.querySelectorAll("ul li");
+let content = Array.from(document.querySelectorAll(".content div"));
+
+// [1] At onclick on list remove all active class from all list
+// [2] add class active to this li click
+// [3] (.content div) remove all class active from div array
+// [4] add active class To div one when tap1 contain active class etc.
+
+list.forEach((li) => {
+  li.addEventListener("click", (e) => {
+    // Remove All Active Class
+    list.forEach((li) => {
+      li.classList.remove("active");
+      e.currentTarget.classList.add("active");
+    });
+
+    content.forEach((div) => {
+      div.classList.remove("active");
+      document
+        .querySelector(e.currentTarget.dataset.num)
+        .classList.add("active");
+    });
+  });
+});
+
+
+      </script>
